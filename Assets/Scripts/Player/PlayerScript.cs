@@ -19,6 +19,8 @@ public class PlayerScript : MonoBehaviour
         float vertical_axis = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizotal_axis,0f,vertical_axis).normalized;
         if (direction.magnitude >= 0.1f){
+            float targetAngle =  Mathf.Atan2(direction.x , direction.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, targetAngle , 0f);
             cc.Move(direction.normalized * playerSpeed*Time.deltaTime);
 
         }
